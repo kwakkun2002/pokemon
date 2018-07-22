@@ -1,6 +1,23 @@
 import sys,time
 
-class Pika():
+class Setting():
+    def skill_a(self,enemy):
+        print(self.skill_a_name+"을 시전했다!")
+        enemy.hp-=self.skill_a_damage
+        enemy.life()
+    def skill_b(self,enemy):
+        print(self.skill_b_name + "을 시전했다!")
+        enemy.hp -= self.skill_b_damage
+        enemy.life()
+    def dead(self):
+        print(self.name+"은 죽었다")
+        time.sleep(3)
+        sys.exit()
+    def life(self):
+        if self.hp<=0:
+            self.dead()
+
+class Pika(Setting):
     def __init__(self):
         self.name="피카츄"
         self.hp=300
@@ -10,23 +27,8 @@ class Pika():
         self.skill_a_damage = 100
         self.skill_b_name = "몸통박치기"
         self.skill_b_damage = 50
-    def skill_a(self,enemy):
-        print(self.skill_a_name+"을 시전했다!")
-        enemy.hp-=self.skill_a_damage
-        enemy.life()
-    def skill_b(self,enemy):
-        print(self.skill_b_name + "을 시전했다!")
-        enemy.hp -= self.skill_b_damage
-        enemy.life()
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
 
-class Ingoking():
+class Ingoking(Setting):
     def __init__(self):
         self.name="잉어킹"
         self.hp=10
@@ -36,15 +38,8 @@ class Ingoking():
     def skill_a(self):
         print(self.skill_a_name+"을 시전했다!")
         print(self.name+"은 튀어올랐다!!엄청 높이 뛰어올랐다!")
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
 
-class Lichu():
+class Lichu(Setting):
     def __init__(self):
         self.name="라이츄"
         self.hp=200
@@ -54,23 +49,8 @@ class Lichu():
         self.skill_a_damage = 200
         self.skill_b_name = "돌진"
         self.skill_b_damage = 60
-    def skill_a(self,enemy):
-        print(self.skill_a_name+"을 시전했다!")
-        enemy.hp-=self.skill_a_damage
-        enemy.life()
-    def skill_b(self,enemy):
-        print(self.skill_b_name + "을 시전했다!")
-        enemy.hp -= self.skill_b_damage
-        enemy.life()
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
 
-class Cobugi():
+class Cobugi(Setting):
     def __init__(self):
         self.name="꼬부기"
         self.hp=400
@@ -79,23 +59,12 @@ class Cobugi():
         self.skill_a_name = "하이드로 펌프"
         self.skill_a_damage = 50
         self.skill_b_name = "비눗방울"
-    def skill_a(self,enemy):
-        print(self.skill_a_name+"을 시전했다!")
-        enemy.hp-=self.skill_a_damage
-        enemy.life()
     def skill_b(self,enemy):
         print(self.skill_b_name + "을 시전했다!")
         enemy.acu/=2
         print("명중률이 절반이 되었다!")
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
 
-class Pairi():
+class Pairi(Setting):
     def __init__(self):
         self.name="파이리"
         self.hp=350
@@ -105,23 +74,8 @@ class Pairi():
         self.skill_a_damage = 150
         self.skill_b_name = "깨물기"
         self.skill_b_damage = 70
-    def skill_a(self,enemy):
-        print(self.skill_a_name+"을 시전했다!")
-        enemy.hp-=self.skill_a_damage
-        enemy.life()
-    def skill_b(self,enemy):
-        print(self.skill_b_name + "을 시전했다!")
-        enemy.hp -= self.skill_b_damage
-        enemy.life()
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
 
-class jamanbo():
+class jamanbo(Setting):
     def __init__(self):
         self.name="잠만보"
         self.hp=1000
@@ -134,19 +88,8 @@ class jamanbo():
         print(self.skill_a_name+"을 시전했다!")
         self.hp+=50
         print("체력이 +50되었다!")
-    def skill_b(self,enemy):
-        print(self.skill_b_name + "을 시전했다!")
-        enemy.hp -= self.skill_b_damage
-        enemy.life()
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
 
-class gorapaduck():
+class gorapaduck(Setting):
     def __init__(self):
         self.name="고라파덕"
         self.hp=200
@@ -158,19 +101,9 @@ class gorapaduck():
     def skill_a(self,enemy):
         print(self.skill_a_name+"을 시전했다!")
         enemy.acu=0
-    def skill_b(self,enemy):
-        print(self.skill_b_name + "을 시전했다!")
-        enemy.hp -= self.skill_b_damage
-        enemy.life()
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
+        print(" 명중률이 0이 되었다!")
 
-class gilpagi():
+class gilpagi(Setting):
     def __init__(self):
         self.name="질퍼기"
         self.hp=100
@@ -188,13 +121,6 @@ class gilpagi():
         print(self.skill_b_name + "을 시전했다!")
         enemy.hp -= enemy.hp/2
         enemy.life()
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
 
 class tanguri():
     def __init__(self):
@@ -216,13 +142,8 @@ class tanguri():
         print(self.skill_b_name + "을 시전했다!")
         self.skill_b_count+=1
         enemy.life()
-    def dead(self):
-        print(self.name+"은 죽었다")
-        time.sleep(3)
-        sys.exit()
-    def life(self):
-        if self.hp<=0:
-            self.dead()
+
+
 
 
 

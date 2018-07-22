@@ -1,1 +1,1 @@
-This is python project which used for making poke
+python pokemon project
