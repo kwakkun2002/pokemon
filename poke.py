@@ -1,14 +1,25 @@
-import sys,time
+import sys,time,random
 
 class Setting():
+    def acu_choice(self):
+        if random.randrange(1,100)>=self.acu:
+            return True
+        else:
+            return False
     def skill_a(self,enemy):
-        print(self.skill_a_name+"을 시전했다!")
-        enemy.hp-=self.skill_a_damage
-        enemy.life()
+        if self.acu_choice() is True:
+            print(self.skill_a_name+"을 시전했다!")
+            enemy.hp-=self.skill_a_damage
+            enemy.life()
+        else:
+            print("명중하지 못했다!")
     def skill_b(self,enemy):
-        print(self.skill_b_name + "을 시전했다!")
-        enemy.hp -= self.skill_b_damage
-        enemy.life()
+        if self.acu_choice() is True:
+            print(self.skill_b_name + "을 시전했다!")
+            enemy.hp -= self.skill_b_damage
+            enemy.life()
+        else:
+            print("명중하지 못했다!")
     def dead(self):
         print(self.name+"은 죽었다")
         time.sleep(3)
@@ -37,7 +48,7 @@ class Ingoking(Setting):
         self.skill_a_name = "튀어오르기"
     def skill_a(self):
         print(self.skill_a_name+"을 시전했다!")
-        print(self.name+"은 튀어올랐다!!엄청 높이 뛰어올랐다!")
+        print(self.name+"은 튀어올랐다!!엄청 높이 튀어올랐다!")
 
 class Lichu(Setting):
     def __init__(self):
@@ -75,7 +86,7 @@ class Pairi(Setting):
         self.skill_b_name = "깨물기"
         self.skill_b_damage = 70
 
-class jamanbo(Setting):
+class Jamanbo(Setting):
     def __init__(self):
         self.name="잠만보"
         self.hp=1000
@@ -89,7 +100,7 @@ class jamanbo(Setting):
         self.hp+=50
         print("체력이 +50되었다!")
 
-class gorapaduck(Setting):
+class Gorapaduck(Setting):
     def __init__(self):
         self.name="고라파덕"
         self.hp=200
@@ -103,7 +114,7 @@ class gorapaduck(Setting):
         enemy.acu=0
         print(" 명중률이 0이 되었다!")
 
-class gilpagi(Setting):
+class Gilpagi(Setting):
     def __init__(self):
         self.name="질퍼기"
         self.hp=100
@@ -122,7 +133,7 @@ class gilpagi(Setting):
         enemy.hp -= enemy.hp/2
         enemy.life()
 
-class tanguri():
+class Tanguri():
     def __init__(self):
         self.name="탕구리"
         self.hp=350
