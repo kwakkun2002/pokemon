@@ -133,7 +133,7 @@ class Gilpagi(Setting):
         enemy.hp -= enemy.hp/2
         enemy.life()
 
-class Tanguri():
+class Tanguri(Setting):
     def __init__(self):
         self.name="탕구리"
         self.hp=350
