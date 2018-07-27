@@ -2,37 +2,37 @@ import sys,time,random
 
 class Setting():
 
-    def __init__(self,name,hp,type,acu,skill_a_name,skill_a_damage,skill_b_name,skill_b_damage):
+    def __init__(self,name,hp,type,acu,skill_a_name,skill_a_damage,skill_a_type,skill_b_name,skill_b_damage,skill_b_type):
         self.name = name
         self.hp = hp
         self.type = type
         self.acu = acu
         self.skill_a_name = skill_a_name
         self.skill_a_damage = skill_a_damage
+        self.skill_a_type=skill_a_type
         self.skill_b_name = skill_b_name
         self.skill_b_damage = skill_b_damage
+        self.skill_b_type=skill_b_type
 
     def acu_choice(self):
-        if random.randrange(1,100)>=self.acu:
+        if random.randrange(1,100)<=self.acu:
             return True
         else:
-            return False
+            print("명중하지 못했다!")
 
     def skill_a(self,enemy):
         if self.acu_choice() is True:
-            print(self.skill_a_name+"을 시전했다!")
-            enemy.hp-=self.skill_a_damage
-            enemy.life()
-        else:
-            print("명중하지 못했다!")
+            if self.skill_a_type is "일반":
+                print(self.skill_a_name+"을 시전했다!")
+                enemy.hp-=self.skill_a_damage
+                enemy.life_confirm()
 
     def skill_b(self,enemy):
         if self.acu_choice() is True:
-            print(self.skill_b_name + "을 시전했다!")
-            enemy.hp -= self.skill_b_damage
-            enemy.life()
-        else:
-            print("명중하지 못했다!")
+            if self.skill_b_type is "일반":
+                print(self.skill_b_name + "을 시전했다!")
+                enemy.hp -= self.skill_b_damage
+                enemy.life_confirm()
 
     def life_confirm(self):
         if self.hp<=0:
@@ -40,45 +40,37 @@ class Setting():
             time.sleep(3)
             sys.exit()
 
+
+
+
+
+
+
+
 class Pika(Setting):
     def __init__(self):
-        super().__init__("피카츄",300,"전기",50,"10만볼트",100,"몸통박치기",50)
+        super().__init__("피카츄",300,"전기",50,"10만볼트",100,"전기","몸통박치기",50,"일반")
 
 class Ingoking(Setting):
     def __init__(self):
-        self.name="잉어킹"
-        self.hp=10
-        self.type="잉여"
-        self.acu=50
-        self.skill_a_name = "튀어오르기"
+        super().__init__("잉어킹",10,"일반",50,"튀어오르기",0,"특수공격","없음",0,"없음")
     def skill_a(self):
-        print(self.skill_a_name+"을 시전했다!")
-        print(self.name+"은 튀어올랐다!!엄청 높이 튀어올랐다!")
+        super().acu_choice() is True:
+            print(self.skill_a_name+"을 시전했다!")
+            print(self.name+"은 튀어올랐다!!엄청 높이 튀어올랐다!")
 
 class Lichu(Setting):
     def __init__(self):
-        self.name="라이츄"
-        self.hp=200
-        self.type="전기"
-        self.acu=50
-        self.skill_a_name = "100만볼트"
-        self.skill_a_damage = 200
-        self.skill_b_name = "돌진"
-        self.skill_b_damage = 60
+        super().__init__("라이츄",200,"전기",50,"100만볼트",200,"전기","돌진",60,"일반")
 
 class Cobugi(Setting):
     def __init__(self):
-        self.name="꼬부기"
-        self.hp=400
-        self.type="물"
-        self.acu=50
-        self.skill_a_name = "하이드로 펌프"
-        self.skill_a_damage = 50
-        self.skill_b_name = "비눗방울"
+        super().__init__("꼬부기",400,"물",50,"하이드로 펌프",50,"물","비눗방울",0,"특수공격")
     def skill_b(self,enemy):
-        print(self.skill_b_name + "을 시전했다!")
-        enemy.acu/=2
-        print("명중률이 절반이 되었다!")
+        super().acu_choice() is True:
+            print(self.skill_b_name + "을 시전했다!")
+            enemy.acu/=2
+            print("명중률이 절반이 되었다!")
 
 class Pairi(Setting):
     def __init__(self):
@@ -159,9 +151,6 @@ class Tanguri(Setting):
         self.skill_b_count+=1
         enemy.life()
 
-
-a=Pika()
-print(a.name)
 
 
 
