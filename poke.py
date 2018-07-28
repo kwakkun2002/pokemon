@@ -1,14 +1,39 @@
 import sys,time,random
-import skill
 
 class Setting():
 
-    def __init__(self,name,hp,type,acu):
+    def __init__(self,name,hp,type,acu,skill_a_name,skill_a_damage,skill_a_type,skill_b_name,skill_b_damage,skill_b_type):
         self.name = name
         self.hp = hp
         self.type = type
         self.acu = acu
-        self.skills=[]
+        self.skill_a_name = skill_a_name
+        self.skill_a_damage = skill_a_damage
+        self.skill_a_type=skill_a_type
+        self.skill_b_name = skill_b_name
+        self.skill_b_damage = skill_b_damage
+        self.skill_b_type=skill_b_type
+
+    def acu_choice(self):
+        if random.randrange(1,100)<=self.acu:
+            return True
+        else:
+            print("명중하지 못했다!")
+
+    def skill_a(self,enemy,):
+        if self.acu_choice() is True:
+            if self.skill_a_type is "노말":
+                print(self.skill_a_name+"을 시전했다!")
+                enemy.hp-=self.skill_a_damage
+                enemy.life_confirm()
+
+    def skill_b(self,enemy):
+        if self.acu_choice() is True:
+            if self.skill_b_type is "노말":
+                print(self.skill_b_name + "을 시전했다!")
+                enemy.hp -= self.skill_b_damage
+                enemy.life_confirm()
+
     def life_confirm(self):
         if self.hp<=0:
             print(self.name + "은 죽었다")
@@ -25,7 +50,6 @@ class Setting():
 class Pika(Setting):
     def __init__(self):
         super().__init__("피카츄",300,"전기",50,"10만볼트",100,"전기","몸통박치기",50,"노말")
-    skill.skill_a()
 
 class Ingoking(Setting):
     def __init__(self):
