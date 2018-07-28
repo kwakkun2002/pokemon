@@ -20,16 +20,16 @@ class Setting():
         else:
             print("명중하지 못했다!")
 
-    def skill_a(self,enemy):
+    def skill_a(self,enemy,):
         if self.acu_choice() is True:
-            if self.skill_a_type is "일반":
+            if self.skill_a_type is "노말":
                 print(self.skill_a_name+"을 시전했다!")
                 enemy.hp-=self.skill_a_damage
                 enemy.life_confirm()
 
     def skill_b(self,enemy):
         if self.acu_choice() is True:
-            if self.skill_b_type is "일반":
+            if self.skill_b_type is "노말":
                 print(self.skill_b_name + "을 시전했다!")
                 enemy.hp -= self.skill_b_damage
                 enemy.life_confirm()
@@ -49,42 +49,36 @@ class Setting():
 
 class Pika(Setting):
     def __init__(self):
-        super().__init__("피카츄",300,"전기",50,"10만볼트",100,"전기","몸통박치기",50,"일반")
+        super().__init__("피카츄",300,"전기",50,"10만볼트",100,"전기","몸통박치기",50,"노말")
 
 class Ingoking(Setting):
     def __init__(self):
-        super().__init__("잉어킹",10,"일반",50,"튀어오르기",0,"특수공격","없음",0,"없음")
+        super().__init__("잉어킹",10,"노말",50,"튀어오르기",0,"특수공격","없음",0,"없음")
     def skill_a(self):
-        super().acu_choice() is True:
+        if self.acu_choice() is True:
             print(self.skill_a_name+"을 시전했다!")
             print(self.name+"은 튀어올랐다!!엄청 높이 튀어올랐다!")
 
 class Lichu(Setting):
     def __init__(self):
-        super().__init__("라이츄",200,"전기",50,"100만볼트",200,"전기","돌진",60,"일반")
+        super().__init__("라이츄",200,"전기",50,"100만볼트",200,"전기","돌진",60,"")
 
 class Cobugi(Setting):
     def __init__(self):
         super().__init__("꼬부기",400,"물",50,"하이드로 펌프",50,"물","비눗방울",0,"특수공격")
     def skill_b(self,enemy):
-        super().acu_choice() is True:
+        if self.acu_choice() is True:
             print(self.skill_b_name + "을 시전했다!")
             enemy.acu/=2
             print("명중률이 절반이 되었다!")
 
 class Pairi(Setting):
     def __init__(self):
-        self.name="파이리"
-        self.hp=350
-        self.type="불"
-        self.acu=50
-        self.skill_a_name = "불대문자"
-        self.skill_a_damage = 150
-        self.skill_b_name = "깨물기"
-        self.skill_b_damage = 70
+        super().__init__("파이리",350,"불",50,"불대문자",150,"불","깨물기",70,"노말")
 
 class Jamanbo(Setting):
     def __init__(self):
+        super().__init__("잠만보",1000,"노말",50,"단단해지기",0,"노말","몸통박치기",50,"노말")
         self.name="잠만보"
         self.hp=1000
         self.type="노말"
