@@ -8,7 +8,7 @@ class Setting():
         self.hp = hp
         self.type = type
         self.acu = acu
-        self.skills=[]
+        self.skill=[]
     def life_confirm(self):
         if self.hp<=0:
             print(self.name + "은 죽었다")
@@ -16,18 +16,16 @@ class Setting():
             sys.exit()
 
 
-
-
-
-
-
+'''"10만볼트",100,"전기","몸통박치기",50,"노말"'''
 
 class Pika(Setting):
     def __init__(self):
-        super().__init__("피카츄",300,"전기",50,"10만볼트",100,"전기","몸통박치기",50,"노말")
-    skill.skill_a()
+        super().__init__("피카츄",300,"전기",50)
 
-class Ingoking(Setting):
+
+
+
+'''class Ingoking(Setting):
     def __init__(self):
         super().__init__("잉어킹",10,"노말",50,"튀어오르기",0,"특수공격","없음",0,"없음")
     def skill_a(self):
@@ -119,7 +117,7 @@ class Tanguri(Setting):
     def skill_b(self,enemy):
         print(self.skill_b_name + "을 시전했다!")
         self.skill_b_count+=1
-        enemy.life()
+        enemy.life()'''
 
 
 

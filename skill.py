@@ -13,3 +13,7 @@ def skill_a(self, enemy):
             print(self.skill_a_name + "을 시전했다!")
             enemy.hp -= self.skill_a_damage
             enemy.life_confirm()
+
+print("this is test")
+
+
