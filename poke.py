@@ -119,7 +119,7 @@ class Tanguri(Setting):
         self.skill_b_count+=1
         enemy.life()'''
 
-
+print("what is going on?")
 
 
 
