@@ -7,7 +7,7 @@ class Skill():
         self.skill_type=skill_type
         self.skill_ability="일반"
     def acu_choice(self):
-        if random.randrange(1, 100) <= self.acu:
+        if random.randrange(1, 101) <= self.acu:
             return True
     def skill(self,enemy):
         if self.acu_choice() is True:
@@ -15,22 +15,20 @@ class Skill():
             enemy.hp-=self.skill_damage
             enemy.life_confirm()
         else:
-            print("명중하지 못했다!")
+            print(self.skill_name+"는 실패했다!")
 
 class SpecialSkill(Skill):
-    def __init__(self,skill_name,skill_type):
+    def __init__(self,skill_name,skill_type,skill_ability):
         self.skill_name=skill_name
         self.skill_type=skill_type
-        self.skill_ability="특수"
+        self.skill_ability="특수:"+skill_ability
     def specialskill(self,sentence):
         if self.acu_choice() is True:
             print(self.skill_name+"을 시전했다!")
             print(sentence)
         else:
-            print("실패했다!")
+            print(self.skill_name + "는 실패했다!")
             return 0
-
-
 class Setting():
     def __init__(self,name,hp,type,acu):
         self.name = name
