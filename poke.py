@@ -33,11 +33,12 @@ class SpecialSkill(Skill):
             return 0
 
 class Setting():
-    def __init__(self,name,hp,type,acu):
+    def __init__(self,name,hp,type,acu,*skill_list):
         self.name = name
         self.hp = hp
         self.type = type
         self.acu = acu
+        self.skill_list=skill_list
     def life_confirm(self):
         if self.hp<=0:
             print(self.name + "은 죽었다")
@@ -45,7 +46,7 @@ class Setting():
 
 class Pika(Setting,Skill):
     def __init__(self):
-        Setting.__init__(self,"피카츄",300,"전기",50)
+        Setting.__init__(self,"피카츄",300,"전기",50,"십만볼트","몸통박치기")
     def skill_1(self,enemy):
         Skill.__init__(self,"십만볼트",100,"전기")
         Skill.skill(self,enemy)
@@ -55,14 +56,14 @@ class Pika(Setting,Skill):
 
 class Ingoking(Setting,Skill):
     def __init__(self):
-        Setting.__init__(self,"잉어킹", 10, "노말", 50)
+        Setting.__init__(self,"잉어킹", 10, "노말", 50,"튀어오르기")
     def skill_1(self):
         SpecialSkill.__init__(self,"튀어오르기",0,"노말","높이 뛰어오른다","엄청 높이 뛰어올랐다!@")
         SpecialSkill.skill(self)
 
 class Lichu(Setting,Skill):
     def __init__(self):
-        Setting.__init__(self,"라이츄",200,"전기",50)
+        Setting.__init__(self,"라이츄",200,"전기",50,"100만볼트","돌진")
     def skill_1(self,enemy):
         Skill.__init__(self,"100만볼트",200,"전기")
         Skill.skill(self,enemy)
@@ -72,7 +73,7 @@ class Lichu(Setting,Skill):
 
 class Cobugi(Setting,Skill):
     def __init__(self):
-        Setting.__init__(self,"꼬부기",400,"물",50)
+        Setting.__init__(self,"꼬부기",400,"물",50,"하이드로펌프","비눗방울")
     def skill_1(self,enemy):
         Skill.__init__(self,"하이드로 펌프", 50, "물")
         Skill.skill(self, enemy)
@@ -83,7 +84,7 @@ class Cobugi(Setting,Skill):
 
 class Pairi(Setting,Skill):
     def __init__(self):
-        Setting.__init__(self,"파이리",350,"불",50)
+        Setting.__init__(self,"파이리",350,"불",50,"불대문자","깨물기")
     def skill_1(self,enemy):
         Skill.__init__(self,"불대문자", 150, "불")
         Skill.skill(self, enemy)
@@ -93,7 +94,7 @@ class Pairi(Setting,Skill):
 
 class Jamanbo(Setting,Skill):
     def __init__(self):
-        Setting.__init__(self,"잠만보",1000,"노말",50)
+        Setting.__init__(self,"잠만보",1000,"노말",50,"단단해지기","몸통박치기")
     def skill_1(self,enemy):
         SpecialSkill.__init__(self,"단단해지기",0,"노말","체력을 50회복","체력이 +50 되었다!")
         SpecialSkill.skill(self, enemy)
@@ -104,7 +105,7 @@ class Jamanbo(Setting,Skill):
 
 class Gorapaduck(Setting,Skill):
     def __init__(self):
-        Setting.__init__(self,"꼬부기",400,"물",50)
+        Setting.__init__(self,"고라파덕",400,"물",50,"하이드로 펌프","싫은소리")
     def skill_1(self,enemy):
         Skill.__init__(self,"하이드로 펌프", 50, "물")
         Skill.skill(self, enemy)
@@ -117,7 +118,7 @@ class Gorapaduck(Setting,Skill):
 class Gilpagi(Setting,Skill):
     skill_used=0
     def __init__(self):
-        Setting.__init__(self,"질뻐기",100,"독",50)
+        Setting.__init__(self,"질뻐기",100,"독",50,"트림","오물웨이브")
     def skill_1(self,enemy):
         SpecialSkill.__init__(self,"트림", 30, "독")
         SpecialSkill.skill(self, enemy)
@@ -131,7 +132,7 @@ class Gilpagi(Setting,Skill):
 class Tanguri(Setting,Skill):
     skill_used=0
     def __init__(self):
-        Setting.__init__(self,"탕구리",350,"격투",50)
+        Setting.__init__(self,"탕구리",350,"격투",50,"지구던지기","기모으기")
     def skill_1(self,enemy):
         SpecialSkill.__init__(self,"지구던지기", 2000, "격투",'','')
         Skill.skill(self, enemy)
@@ -141,5 +142,7 @@ class Tanguri(Setting,Skill):
         SpecialSkill.__init__(self,"기모으기",0,"격투","지구던지기를 쓸수있게됩니다",str(self.skill_used)+"번모음")
         self.skill_used += 1
         SpecialSkill.skill(self)
+
+
 
 
