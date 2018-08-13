@@ -24,10 +24,11 @@ class SpecialSkill(Skill):
         self.skill_damage=skill_damage
         self.skill_ability="특수:"+skill_ability
         self.sentence=sentence
-    def skill(self,*enemy):
+    def skill(self,enemy):
         if self.acu_choice() is True:
             print(self.skill_name+"을 시전했다!")
             print(self.sentence)
+            enemy.life_confirm()
         else:
             print(self.skill_name + "는 실패했다!")
             return 0
@@ -41,8 +42,7 @@ class Setting():
         self.skill_list=skill_list
     def life_confirm(self):
         if self.hp<=0:
-            print(self.name + "은 죽었다")
-            sys.exit()
+            return True
 
 class Pika(Setting,Skill):
     def __init__(self):
@@ -56,10 +56,13 @@ class Pika(Setting,Skill):
 
 class Ingoking(Setting,Skill):
     def __init__(self):
-        Setting.__init__(self,"잉어킹", 10, "노말", 50,"튀어오르기")
+        Setting.__init__(self,"잉어킹", 10, "노말", 50,"튀어오르기","몸통박치기")
     def skill_1(self):
         SpecialSkill.__init__(self,"튀어오르기",0,"노말","높이 뛰어오른다","엄청 높이 뛰어올랐다!@")
         SpecialSkill.skill(self)
+    def skill_2(self,enemy):
+        Skill.__init__(self,"몸통박치기",50,"노말")
+        Skill.skill(self,enemy)
 
 class Lichu(Setting,Skill):
     def __init__(self):
@@ -138,7 +141,7 @@ class Tanguri(Setting,Skill):
         Skill.skill(self, enemy)
         if self.skill_used is 3:
             enemy.hp-=self.skill_damage
-    def skill_2(self):
+    def skill_2(self,enemy):
         SpecialSkill.__init__(self,"기모으기",0,"격투","지구던지기를 쓸수있게됩니다",str(self.skill_used)+"번모음")
         self.skill_used += 1
         SpecialSkill.skill(self)
