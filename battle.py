@@ -19,9 +19,16 @@ print("3번 싸워서 이기면 게임끝남ㅅㄱ")
 print("너의 포켓몬은 피카츄다")
 
 count=0
+round=0
+turn=0
+
+continue_skill_list=[]
+
 while count is not 3:
     enemy=pk.Tanguri()
     while True:
+        round+=1
+        turn='player'
         choice=input("무엇을 하시겠습니까? 1은 "+player.pokemon.skill_list[0]+"2는 "+player.pokemon.skill_list[1])
         if choice is '1':
             player.pokemon.skill_1(enemy)
@@ -44,6 +51,8 @@ while count is not 3:
             print("다시 입력해 주세요")
             continue
     while True:
+        round+=1
+        turn="enemy"
         a=random.choice(range(len(enemy.skill_list)))
         if a is 0:
             enemy.skill_1(player.pokemon)

@@ -113,7 +113,7 @@ class Gorapaduck(Setting,Skill):
         Skill.__init__(self,"하이드로 펌프", 50, "물")
         Skill.skill(self, enemy)
     def skill_2(self,enemy):
-        SpecialSkill.__init__(self,"싫은소리",0,"노말","상대의 명중률을 이번턴에 0으로 만듭니다.","상대의 명중률이 0이 되었다!")
+        SpecialSkill.__init__(self,"싫은소리",0,"노말","상대의 명중률을 다음턴에 0으로 만듭니다.","상대의 명중률이 0이 되었다!")
         SpecialSkill.skill(self,enemy)
         enemy.acu=0
         pass
@@ -126,25 +126,31 @@ class Gilpagi(Setting,Skill):
         SpecialSkill.__init__(self,"트림", 30, "독")
         SpecialSkill.skill(self, enemy)
         enemy.hp-=self.skill_damage
-        self.skill_used+=1
     def skill_2(self,enemy):
         SpecialSkill.__init__(self,"오물웨이브",0,"독","상대의 체력을 절반","상대의 체력이 절반으로 떨어졌다!")
         SpecialSkill.skill(self,enemy)
         enemy.hp/=2
 
 class Tanguri(Setting,Skill):
-    skill_used=0
     def __init__(self):
         Setting.__init__(self,"탕구리",350,"격투",50,"지구던지기","기모으기")
+        self.skill_used=0
     def skill_1(self,enemy):
         SpecialSkill.__init__(self,"지구던지기", 2000, "격투",'','')
-        Skill.skill(self, enemy)
         if self.skill_used is 3:
-            enemy.hp-=self.skill_damage
+            Skill.skill(self, enemy)
+        else:
+            print("할수없습니다")
     def skill_2(self,enemy):
         SpecialSkill.__init__(self,"기모으기",0,"격투","지구던지기를 쓸수있게됩니다",str(self.skill_used)+"번모음")
-        self.skill_used += 1
-        SpecialSkill.skill(self)
+        if self.skill_used is not 3:
+            self.skill_used += 1
+        else:
+
+        SpecialSkill.skill(self,enemy)
+
+
+
 
 
 

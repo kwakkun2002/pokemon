@@ -1,11 +1,9 @@
 import random
 import poke
 
-def clear():
-    for i in range(100):
-        print("\n")
+def a():
+    print(a)
 
-print("asddsa")
-clear()
+list=[a]
 
 
