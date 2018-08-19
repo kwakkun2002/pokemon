@@ -106,7 +106,7 @@ class Jamanbo(Setting,Skill):
         Skill.__init__(self,"몸통박치기",50,"노말")
         Skill.skill(self,enemy)
 
-class Gorapaduck(Setting,Skill):
+class Gorapaduck(Setting,Skill):#not ready
     def __init__(self):
         Setting.__init__(self,"고라파덕",400,"물",50,"하이드로 펌프","싫은소리")
     def skill_1(self,enemy):
@@ -146,9 +146,7 @@ class Tanguri(Setting,Skill):
         if self.skill_used is not 3:
             self.skill_used += 1
         else:
-
-        SpecialSkill.skill(self,enemy)
-
+            SpecialSkill.skill(self,enemy)
 
 
 

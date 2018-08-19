@@ -15,21 +15,18 @@ def clear():
 
 player=player()
 player.name=input("이름이나 입력하셈:")
-print("3번 싸워서 이기면 게임끝남ㅅㄱ")
 print("너의 포켓몬은 피카츄다")
 
 count=0
 round=0
-turn=0
-
-continue_skill_list=[]
 
 while count is not 3:
-    enemy=pk.Tanguri()
+    enemy=pk.Cobugi()
     while True:
         round+=1
         turn='player'
         choice=input("무엇을 하시겠습니까? 1은 "+player.pokemon.skill_list[0]+"2는 "+player.pokemon.skill_list[1])
+        print("\n\n")
         if choice is '1':
             player.pokemon.skill_1(enemy)
             if enemy.life_confirm() is True:
@@ -50,30 +47,33 @@ while count is not 3:
         else:
             print("다시 입력해 주세요")
             continue
+    print('\n\n')
     while True:
         round+=1
         turn="enemy"
         a=random.choice(range(len(enemy.skill_list)))
         if a is 0:
+            print(enemy.name+":")
             enemy.skill_1(player.pokemon)
             if player.pokemon.life_confirm() is True:
                 print("그만해 다 끝났어")
                 time.sleep(3)
                 sys.exit()
             else:
-                print("나에게 hp "+str(enemy.hp)+"이가 남았다!")
+                print(player.pokemon.name+"에게 hp "+str(player.pokemon.hp)+"이가 남았다!")
                 break
         elif a is 1:
+            print(enemy.name + ":")
             enemy.skill_2(player.pokemon)
             if player.pokemon.life_confirm() is True:
                 print("그만해 다 끝났어")
                 time.sleep(3)
                 sys.exit()
             else:
-                print("나에게 hp"+str(enemy.hp)+"이가 남았다!")
+                print(player.pokemon.name+"에게 hp"+str(player.pokemon.hp)+"이가 남았다!")
                 break
-    time.sleep(3)
-    clear()
+    time.sleep(4)
+    print("llllllllllllllllllllllllllllllllll")
 
 
 
