@@ -73,7 +73,8 @@ while count is not 3:
                 print(player.pokemon.name+"에게 hp"+str(player.pokemon.hp)+"이가 남았다!")
                 break
     time.sleep(4)
-    print("llllllllllllllllllllllllllllllllll")
+    clear()
+
 
 
 
